@@ -5,14 +5,14 @@ import session from "express-session";
 import _ from "lodash";
 
 mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"",
-    database:"node_project"
+    host:"sql6.freesqldatabase.com",
+    user:"sql6641312",
+    password:"SfkbgNpbq2",
+    database:"sql6641312"
 })
 
 var app = express();
-var port = 3000;
+var port = 3306;
 
 app.set("view engine","ejs");
 app.use(express.static("public"));
@@ -47,10 +47,10 @@ function calculateTotal(cart, req){
 
 app.get("/", (req, res) => {
     var con = mysql.createConnection({
-        host:"localhost",
-        user:"root",
-        password:"",
-        database:"node_project"
+        host:"sql6.freesqldatabase.com",
+        user:"sql6641312",
+        password:"SfkbgNpbq2",
+        database:"sql6641312"
     })
     con.query("SELECT * FROM products", (err, result) => {
         res.render("pages/index", {result: result});
@@ -149,10 +149,10 @@ app.post("/place_order", (req, res) => {
     req.session.order_id = id;
 
     var con = mysql.createConnection({
-            host:"localhost",
-            user:"root",
-            password:"",
-            database:"node_project"
+            host:"sql6.freesqldatabase.com",
+            user:"sql6641312",
+            password:"SfkbgNpbq2",
+            database:"sql6641312"
         })
 
     var cart = req.session.cart;
@@ -193,10 +193,10 @@ app.get("/verify_payment", (req, res) => {
     var order_id = req.session.order_id;
 
     var con = mysql.createConnection({
-        host:"localhost",
-        user:"root",
-        password:"",
-        database:"node_project"
+        host:"sql6.freesqldatabase.com",
+        user:"sql6641312",
+        password:"SfkbgNpbq2",
+        database:"sql6641312"
     })
     
     con.connect((err) =>{
@@ -223,10 +223,10 @@ app.get("/thank_you", (req, res) => {
 app.get("/single_product", (req, res) => {
     var id = req.query.id;
     var con = mysql.createConnection({
-        host:"localhost",
-        user:"root",
-        password:"",
-        database:"node_project"
+        host:"sql6.freesqldatabase.com",
+        user:"sql6641312",
+        password:"SfkbgNpbq2",
+        database:"sql6641312"
     })
     con.query("SELECT * FROM products WHERE id='"+id+"'", (err, result) => {
         res.render("pages/single_product", {result: result});
@@ -237,10 +237,10 @@ app.get("/single_product", (req, res) => {
 app.get("/search_product", (req, res) => {
     var productName = _.capitalize(req.query.product_name);
     var con = mysql.createConnection({
-        host:"localhost",
-        user:"root",
-        password:"",
-        database:"node_project"
+        host:"sql6.freesqldatabase.com",
+        user:"sql6641312",
+        password:"SfkbgNpbq2",
+        database:"sql6641312"
     })
     con.query("SELECT id FROM products WHERE name = '"+productName+"'", (err, result) => {
         var productId = result[0].id;
@@ -251,10 +251,10 @@ app.get("/search_product", (req, res) => {
 
 app.get("/products", (req, res) => {
     var con = mysql.createConnection({
-        host:"localhost",
-        user:"root",
-        password:"",
-        database:"node_project"
+        host:"sql6.freesqldatabase.com",
+        user:"sql6641312",
+        password:"SfkbgNpbq2",
+        database:"sql6641312"
     })
     con.query("SELECT * FROM products", (err, result) => {
         res.render("pages/products", {result: result});
