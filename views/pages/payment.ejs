@@ -1,0 +1,44 @@
+<%- include("../partials/header") %>
+  </div>
+
+  <!-- food section -->
+
+  <section class="cart container mt-2 my-3 py-5">
+    <div class="container mt-2 text-center">
+        <h4>Payment</h4>
+        <h2>Total: $<%= total %></h2>
+        <div id="paypal-button-container"></div>
+    </div>
+  </section>
+
+  <!-- end food section -->
+
+<%- include("../partials/footer") %>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AR6s-0D7bmHED3WL88lp-gj1CR26embHUYcoNvyYIuid08ba_5txhuBWilaA_s9iEp7aaNYI9kjgYlNT&currency=USD"></script>
+
+<script>
+  paypal.Buttons({
+    // Order is created on the server and the order id is returned
+    createOrder: function(data, actions) {
+      return actions.order.create ({
+        purchase_units: [{
+          amount: {
+            value: "<%= total %>"
+          }
+        }]
+      });
+    },
+    // Finalize the transaction on the server after payer approval
+    onApprove: (data, actions) => {
+      return actions.order.capture().then(function(orderData){
+        console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+        const transaction = orderData.purchase_units[0].payments.captures[0];
+        alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+        
+        window.location.href = "/verify_payment?transaction_id="+transaction.id;
+
+      });
+    }
+  }).render('#paypal-button-container');
+</script>
