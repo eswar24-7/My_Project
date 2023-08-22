@@ -12,7 +12,7 @@ mysql.createConnection({
 })
 
 var app = express();
-var port = 3306;
+var port = process.env.PORT || 3306;
 
 app.set("view engine","ejs");
 app.use(express.static("public"));
