@@ -3,6 +3,8 @@
 ## Project Description
 The project aims to create a robust and feature-rich online food ordering and delivery platform. This platform allows users to browse a wide variety of dishes from different cuisines, add them to their cart, and place orders for home delivery or pickup. The system also provides restaurant owners with tools to manage their menu, view and process incoming orders, and interact with customers.
 
+**Note** : This is a basic e-com site just to display my backend knowledge. It has basic functionalities and many features will be improved further. 
+
 ## Key Features
 **1.Browse and Search**: Users can browse a diverse menu of dishes, categorized by cuisine. A search feature allows them to find specific dishes.<br/>
 **2.Order Placement**: Users can add items to their cart, specify order details, and place orders.<br/>
